@@ -10,124 +10,99 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: CounterScreen(),
     );
   }
 }
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+// Immutable/ Statefull widget
+
+/*class HomeScreen extends StatelessWidget{
+  HomeScreen ({super.key});
+
+  int counter = 0 ;
 
   @override
   Widget build(BuildContext context) {
-    /*
-    return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        leading: Icon(CupertinoIcons.home),
-        middle: Text('Home Screen'),
-        trailing: CupertinoSwitch(
-          onChanged: (bool onChange) {
-
-          }, value: true,
-        ),
-      ),
-
-        child: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('Hello World.!'),
-          Text('Hello World.!'),
-          Text('Hello World.!'),
-          Text('Hello World.!'),
-          CupertinoButton.filled(child: Text('Start'), onPressed: (){}),
-          CupertinoButton(child: Text('Start'), onPressed: (){}),
-          // Cupertino Text Field
-          CupertinoTextField(),
-          // bottom navigation
-          CupertinoTabBar(items: [
-            BottomNavigationBarItem(label: 'Home', icon: Icon(CupertinoIcons.home)),
-            BottomNavigationBarItem(label: 'Home', icon: Icon(CupertinoIcons.mail)),
-            BottomNavigationBarItem(label: 'Home', icon: Icon(CupertinoIcons.search)),
-          ])
-        ],
-      ),
-    ),
-    );
-  }
-     */
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Column(
-        children: [
-          // Switch
-          Switch(value: true, onChanged: (bool value) {}),
-          // alert box
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('Alert'),
-                      content: Text('You are in danger.!'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            // hiding with cancel button
-                            Navigator.pop(context);
-                          },
-                          child: Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text('Okay'),
-                        ),
-                      ],
-                    );
-                  });
-            },
-            child: Text('Show dialog'),
-          ),
-          // show dialg
-          ElevatedButton(onPressed: (){
-            showAboutDialog(context: context ,
-                applicationName: "Pikapie",
-            applicationVersion: '1.04.20',
-            children: [
-              Text('This is good'),
-            ]);
-          }, child: Text('Show About'),),
-          // bottom sheet
-          ElevatedButton(onPressed: (){
-            showModalBottomSheet(
-              isDismissible: false,
-                barrierColor: Colors.black45,
-                backgroundColor: Colors.grey.shade50,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  )
+      body: Center(
+        child: Text(counter.toString(),style: Theme.of(context).textTheme.displayLarge,),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          counter = counter + 1 ;
+          print(counter);
+        },
+        child: Icon(Icons.add),
+      ),
+    ) ;
+  }
+
+}*/
+/*
+
+// Immutable widget
+
+class HomeScreen extends StatelessWidget{
+  const HomeScreen ({super.key});
+
+  static const String name = 'Rafat' ;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold() ;
+  }
+
+}
+
+ */
+// Mutable?stateful
+class CounterScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return CounterState();
+  }
+}
+
+class CounterState extends State<CounterScreen> {
+  int counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Text(counter.toString(),
+                style: TextStyle(
+                  fontSize: 45,
+                  fontWeight: FontWeight.bold,
                 ),
-                context: context, builder: (context){
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Center(
-                      child: Text('This is bottom sheet'),
-                    )
-                  ],
-                ),
-              );
-            });
-          }, child: Text('Show bottom sheet')),
-        ],
+            ),
+            ElevatedButton(onPressed: (){}, child: Text('Profile Screen'))
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // if ( counter < 10)
+          //   {
+          //     counter = counter + 1;
+          //
+          //   }
+          // You can count it here tooo
+          //counter = counter + 1;
+          setState(() {
+            counter = counter + 1;
+          });
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
