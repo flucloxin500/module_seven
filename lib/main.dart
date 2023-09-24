@@ -100,23 +100,6 @@ class CounterState extends State<CounterScreen> {
           ),
 
       ),
-      /*
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // if ( counter < 10)
-          //   {
-          //     counter = counter + 1;
-          //
-          //   }
-          // You can count it here tooo
-          //counter = counter + 1;
-          setState(() {
-            counter = counter + 1;
-          });
-        },
-        child: Icon(Icons.add),
-      ),
-      */
     );
   }
 }
